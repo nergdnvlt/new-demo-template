@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+  # Uncomment if you want to use the gateway
+  # And change the subgraphs to depend on the router
+  # gateway:
+  #   image: gateway-unmanaged
+  #   ports:
+  #     - "8000:3200"
+
+  router:
+    image: router-unmanged
+    ports:
+      - "4000:4000"
+
+  subgraph1:
+    depends_on:
+      - router
+    image: subgraph1
+
+  subgraph2:
+    depends_on:
+      - router
+    image: subgraph2
+
+  subgraph3:
+    depends_on:
+      - router
+    image: subgraph3

@@ -1,0 +1,35 @@
+version: '3.3'
+
+services:
+  # Uncomment if you would like to 
+  # use the gateway
+  # gateway:
+  #   image: gateway
+  #   environment:
+  #     - APOLLO_KEY
+  #     - APOLLO_GRAPH_REF
+  #   ports:
+  #     - "8000:3200"
+
+  router:
+    image: router
+    environment:
+      - APOLLO_KEY
+      - APOLLO_GRAPH_REF
+    ports:
+      - "4000:4000"
+
+  subgraph1:
+    depends_on:
+      - router
+    image: subgraph1
+
+  subgraph2:
+    depends_on:
+      - router
+    image: subgraph2
+
+  subgraph3:
+    depends_on:
+      - router
+    image: subgraph3
